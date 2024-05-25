@@ -19,14 +19,14 @@ public class FixCommand implements CommandExecutor {
         if(args.length == 1){
             if(sender.hasPermission("fix.reload")){
                 ConfigurationManager.reloadConfig();
-                sender.sendMessage("Config ricaricato con successo");
-            }else {sender.sendMessage("NO perms");}
+                sender.sendMessage(ConfigurationManager.reload());
+            }else {sender.sendMessage(ConfigurationManager.nopermission());}
         }else if(args.length == 0){
             if(sender instanceof Player){
                 Player player = (Player) sender;
                 plugin.getFixListener().openGUI(player);
                 return true;
-            } else {sender.sendMessage("Solo i giocatori possono fare questo comando!");}
+            } else {sender.sendMessage(ConfigurationManager.consoleCommand());}
         }
         return false;
     }
