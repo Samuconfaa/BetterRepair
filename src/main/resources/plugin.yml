@@ -4,5 +4,11 @@ main: it.samuconfaa.betterrepair.BetterRepair
 depend: [Vault]
 commands:
   fix:
-    usage: apri il fabbro gui
-
+    description: Comando principale per riparare oggetti e ricaricare la configurazione.
+    usage: /<command> [reload]
+    aliases: [repair]
+    permission: fix.use
+permissions:
+  fix.reload:
+    description: Permette di ricaricare la configurazione
+    default: op

@@ -1,8 +1,6 @@
 package it.samuconfaa.betterrepair;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,7 +29,7 @@ public class FIXListener implements Listener{
         List<String> lore = new ArrayList<>();
         lore.add(ConfigurationManager.lore1());
         lore.add(ConfigurationManager.lore2());
-        lore.add(ConfigurationManager.lore3());
+        lore.add(ConfigurationManager.lore3() + ConfigurationManager.price());
         Manvil.setLore(lore);
         anvil.setItemMeta(Manvil);
         gui.setItem(ConfigurationManager.anvilPos(), anvil);
@@ -67,10 +65,15 @@ public class FIXListener implements Listener{
             e.setCancelled(true);
 
             Player player = (Player) e.getWhoClicked();
+            Location location = player.getLocation();
             int slot = e.getRawSlot();
             if(slot == ConfigurationManager.anvilPos()) {
                 if (plugin.checkMoney(player) > ConfigurationManager.price()) {
                     repairAllItems(player);
+                    player.playSound(location, Sound.BLOCK_ANVIL_USE, 1.0f, 1.0f);
+                }else {
+                    player.sendMessage(ConfigurationManager.nomoney());
+                    player.playSound(location, Sound.ENTITY_VILLAGER_NO, 1.0f, 1.0f);
                 }
             }
 
