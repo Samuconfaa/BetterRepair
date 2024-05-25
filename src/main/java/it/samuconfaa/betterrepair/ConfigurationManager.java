@@ -1,2 +1,6 @@
-package it.samuconfaa.betterrepair;public class ConfigurationManager {
+package it.samuconfaa.betterrepair;
+
+public class ConfigurationManager {
+
+    //test
 }
