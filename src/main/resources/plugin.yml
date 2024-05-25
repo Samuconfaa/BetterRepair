@@ -2,4 +2,7 @@ name: BetterRepair
 version: '${project.version}'
 main: it.samuconfaa.betterrepair.BetterRepair
 depend: [Vault]
+commands:
+  fix:
+    usage: apri il fabbro gui
 

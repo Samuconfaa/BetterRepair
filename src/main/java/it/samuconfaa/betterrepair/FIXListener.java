@@ -30,23 +30,30 @@ public class FIXListener implements Listener{
         Manvil.setDisplayName("FABBRO");
         Manvil.setLore(Collections.singletonList("clicca qua per riparare"));
         anvil.setItemMeta(Manvil);
-        gui.setItem(15, anvil);
+        gui.setItem(13, anvil);
+
+        player.openInventory(gui);
     }
 
     @EventHandler
-    public void onPlayerPickupItem(PlayerPickupItemEvent e){
-        e.setCancelled(true);
+    public void onPlayerPickupItem(PlayerPickupItemEvent e) {
+        Player player = e.getPlayer();
+        ItemStack item = e.getItem().getItemStack();
+
+        if (item.getType() == Material.ANVIL) {
+            e.setCancelled(true);
+        }
     }
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e){
         Inventory inv = e.getClickedInventory();
-        if(inv.getHolder()==null && "FABBRO".equals(inv.getName())){
+        if(inv.getHolder()==null && "Fabbro".equals(inv.getName())){
             e.setCancelled(true);
 
             Player player = (Player) e.getWhoClicked();
             int slot = e.getRawSlot();
-            if(slot == 15){
+            if(slot == 13){
                 repairAllItems(player);
             }
 
@@ -65,6 +72,6 @@ public class FIXListener implements Listener{
         if (offHandItem != null && offHandItem.getType() != Material.AIR) {
             offHandItem.setDurability((short) 0);
         }
-        plugin.removeMoney(player, soldi); //soldi da mettere nel config
+        plugin.removeMoney(player, 200); //soldi da mettere nel config
     }
 }
