@@ -57,4 +57,11 @@ public final class BetterRepair extends JavaPlugin {
             econ.withdrawPlayer(player, amount);
         }
     }
+
+    public double checkMoney(Player player){
+        if(econ != null){
+            return econ.getBalance(player);
+        }
+        return 0;
+    }
 }

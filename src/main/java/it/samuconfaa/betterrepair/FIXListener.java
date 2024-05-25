@@ -53,8 +53,10 @@ public class FIXListener implements Listener{
 
             Player player = (Player) e.getWhoClicked();
             int slot = e.getRawSlot();
-            if(slot == 13){
-                repairAllItems(player);
+            if(slot == 13) {
+                if (plugin.checkMoney(player) > 200) {
+                    repairAllItems(player);
+                }
             }
 
 
