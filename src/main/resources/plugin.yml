@@ -1,0 +1,3 @@
+name: BetterRepair
+version: '${project.version}'
+main: it.samuconfaa.betterrepair.BetterRepair
