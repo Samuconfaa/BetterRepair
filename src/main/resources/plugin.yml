@@ -1,3 +1,5 @@
 name: BetterRepair
 version: '${project.version}'
 main: it.samuconfaa.betterrepair.BetterRepair
+depend: [Vault]
+
