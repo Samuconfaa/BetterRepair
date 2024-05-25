@@ -23,14 +23,29 @@ public class FIXListener implements Listener{
     }
 
     public void openGUI(Player player){
-        Inventory gui = Bukkit.createInventory(null, 27, "Fabbro");
+        Inventory gui = Bukkit.createInventory(null, ConfigurationManager.GUIsize(), ConfigurationManager.GUIname());
 
         ItemStack anvil = new ItemStack(Material.ANVIL);
         ItemMeta Manvil = anvil.getItemMeta();
-        Manvil.setDisplayName("FABBRO");
-        Manvil.setLore(Collections.singletonList("clicca qua per riparare"));
+        Manvil.setDisplayName(ConfigurationManager.anvilName());
+        List<String> lore = new ArrayList<>();
+        lore.add(ConfigurationManager.lore1());
+        lore.add(ConfigurationManager.lore2());
+        lore.add(ConfigurationManager.lore3());
+        Manvil.setLore(lore);
         anvil.setItemMeta(Manvil);
-        gui.setItem(13, anvil);
+        gui.setItem(ConfigurationManager.anvilPos(), anvil);
+
+        ItemStack vetro = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) ConfigurationManager.glassColor());
+        ItemMeta meta = vetro.getItemMeta();
+        meta.setDisplayName(ConfigurationManager.glassName());
+        vetro.setItemMeta(meta);
+
+        for(int i = 0; i < ConfigurationManager.GUIsize(); i++ ){
+            if(i != ConfigurationManager.anvilPos()){
+                gui.setItem(i, vetro);
+            }
+        }
 
         player.openInventory(gui);
     }
@@ -48,13 +63,13 @@ public class FIXListener implements Listener{
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e){
         Inventory inv = e.getClickedInventory();
-        if(inv.getHolder()==null && "Fabbro".equals(inv.getName())){
+        if(inv.getHolder()==null && ConfigurationManager.GUIname().equals(inv.getName())){
             e.setCancelled(true);
 
             Player player = (Player) e.getWhoClicked();
             int slot = e.getRawSlot();
-            if(slot == 13) {
-                if (plugin.checkMoney(player) > 200) {
+            if(slot == ConfigurationManager.anvilPos()) {
+                if (plugin.checkMoney(player) > ConfigurationManager.price()) {
                     repairAllItems(player);
                 }
             }
@@ -74,6 +89,6 @@ public class FIXListener implements Listener{
         if (offHandItem != null && offHandItem.getType() != Material.AIR) {
             offHandItem.setDurability((short) 0);
         }
-        plugin.removeMoney(player, 200); //soldi da mettere nel config
+        plugin.removeMoney(player, ConfigurationManager.price());
     }
 }

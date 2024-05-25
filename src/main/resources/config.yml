@@ -1,0 +1,20 @@
+#ConfigurationFile by Samuconfaa
+
+price: 200
+GUIname: "Fabbro"
+GUIsize : 27
+anvilPos: 13
+anvilName: "§3§lFABBRO"
+lore1: "Clicca qui per riparare il tuo inventario!"
+lore2: ""
+lore3: "Costo:"
+glassName: "§c§lXXX"
+glassColor: 7
+
+messages:
+  nopermission: "§cNon hai abbastanza permessi"
+  nomoney: "§cNon hai abbastanza soldi"
+  consoleCommand: "§cSolo i giocatori possono fare questo!"
+  reload: "§aFile di configurazione ricaricato con successo"
+
+
