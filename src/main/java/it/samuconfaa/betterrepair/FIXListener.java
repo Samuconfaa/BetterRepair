@@ -65,5 +65,6 @@ public class FIXListener implements Listener{
         if (offHandItem != null && offHandItem.getType() != Material.AIR) {
             offHandItem.setDurability((short) 0);
         }
+        plugin.removeMoney(player, soldi); //soldi da mettere nel config
     }
 }

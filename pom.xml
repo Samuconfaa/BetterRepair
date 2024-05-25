@@ -70,8 +70,9 @@
       <dependency>
           <groupId>net.milkbowl.vault</groupId>
           <artifactId>VaultAPI</artifactId>
-          <version>1.7</version>
-          <scope>provided</scope>
+          <version>1.7.2</version>
+          <scope>system</scope>
+          <systemPath>C:/Users/camio/Desktop/plugin/LOCALDEP/VaultAPI-1.7.2.jar</systemPath>
       </dependency>
   </dependencies>
 </project>
